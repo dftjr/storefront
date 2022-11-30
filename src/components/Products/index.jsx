@@ -1,12 +1,29 @@
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography, List, ListItem, Grid, CardActionArea, Container } from '@mui/material'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 // import PriceModal from '../Modal'
 
-function Products(props) {
+function Products() {
 
-    const displayList = props.categories.active === 'all' ? props.products :
-        props.products.filter(product => product.category === props.categories.active);
+    const dispatch = useDispatch();
+    const products = useSelector(state => state.products).products;
+    const categories = useSelector(state => state.categories);
+
+    const displayList = categories.active === 'all' ? products :
+    products.filter(product => product.category === categories.active);
+
+ 
+
+  const addToCart = (product) => {
+    if (product.inventory >= 1) {
+      dispatch({ type: 'add_product', payload: { product } });
+      const updatedProduct = products.find(currProduct => currProduct._id === product._id);
+      updatedProduct.inventory--;
+      dispatch({type: 'update_product', payload: updatedProduct});
+    } else {
+      alert('out of stock');
+    }
+  }
 
     return (
         <>
@@ -19,7 +36,7 @@ function Products(props) {
             >
                 {
                     displayList.map(product => (
-                        <Card sx={{ maxWidth: 400 }} key={product.id}>
+                        <Card sx={{ maxWidth: 400 }} key={product._id}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -37,7 +54,7 @@ function Products(props) {
                                 </List>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small"><AddShoppingCartIcon />ADD TO CART</Button>
+                                <Button size="small" onClick={() => addToCart(product)}><AddShoppingCartIcon />ADD TO CART</Button>
                                 <Button size="small">VIEW DETAILS</Button>
                                 {/* <PriceModal/> */}
                             </CardActions>
@@ -51,9 +68,4 @@ function Products(props) {
     );
 }
 
-const mapStateToProps = (state) => ({
-    categories: state.categories,
-    products: state.products.products,
-});
-
-export default connect(mapStateToProps)(Products);
+export default Products;

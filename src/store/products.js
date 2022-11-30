@@ -1,7 +1,7 @@
 const initialState = {
     products: [
       {
-        id: 1,
+        _id: 1,
         category: 'electronics',
         display: 'TV',
         normalized: 'tv',
@@ -11,7 +11,7 @@ const initialState = {
         img: 'https://images.samsung.com/is/image/samsung/levant-hdtv-n4000-global-ua43n5000arxtw-frontblack-113496207?$650_519_PNG$',
       },
       {
-        id: 2,
+        _id: 2,
         category: 'electronics',
         display: 'Macbook',
         normalized: 'macbook',
@@ -21,13 +21,14 @@ const initialState = {
         img: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp-14-digitalmat-gallery-1-202111?wid=364&hei=333&fmt=png-alpha&.v=1635183223000',
       },
       {
-        id: 3,
+        _id: 3,
         category: 'food',
         display: 'Ice Cream',
         normalized: 'ice_cream',
         description: 'Flavors: Vanilla, Chocolate, Strawberry',
         price: 8,
         inventory: 150,
+        amountInCart: 0,
         img: 'https://ipcdn.freshop.com/resize?url=https://images.freshop.com/00077567254269/c95d66225e8bb252ca0761bd300f14b3_large.png&width=512&type=webp&quality=90',
       },
     ]

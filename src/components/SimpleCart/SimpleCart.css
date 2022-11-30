@@ -1,0 +1,7 @@
+.totalCart {
+    position: relative;
+    margin-top: 35px;
+    text-align: right;
+    margin-left: 50px;
+    z-index: 1;
+}

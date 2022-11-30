@@ -1,10 +1,11 @@
 import { Container, Typography, Grid } from '@mui/material'
+import SimpleCart from '../SimpleCart';
 import './Header.css';
 
 function Header() {
     return (
         <div className="headerContainer">
-            <Container className="headerContainer">
+            <Container>
                 <Grid
                     container
                     direction="row"
@@ -13,6 +14,7 @@ function Header() {
                 >
                     <Typography variant="h1">David's Storefront</Typography>
                 </Grid>
+                <SimpleCart/>
             </Container>
         </div>
     )

@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, CardMedia, CardContent, CardActions, ListItemButton, ListItemText, List, ListItem, IconButton, ListItemAvatar, Avatar, Collapse } from '@mui/material';
-import { Container, Typography, Button } from '@mui/material';
+import { CardMedia, ListItemButton, ListItemText, List, ListItem, IconButton, Collapse } from '@mui/material';
+import { Container } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import Button from '@mui/material/Button';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import './SimpleCart.css';
+import Checkout from '../Modal';
 
 
 const SimpleCart = () => {
@@ -43,12 +45,12 @@ const SimpleCart = () => {
                             cart.productList.map(product => (
 
                                 <ListItem key={product._id}
-                                    secondaryAction={
-                                        <IconButton onClick={() => removeFromCart(product)} edge="end" aria-label="delete">
+                                secondaryAction={
+                                    <IconButton onClick={() => removeFromCart(product)} edge="end" aria-label="delete">
                                             <DeleteIcon />
                                         </IconButton>
                                     }
-                                >
+                                    >
                                     <CardMedia
                                         component="img"
                                         height="50"
@@ -58,10 +60,11 @@ const SimpleCart = () => {
                                     <ListItemText
                                         primary={product.display}
                                         secondary={"Qty. " + product.amountInCart}
-                                    />
+                                        />
                                 </ListItem>
                             ))
                         }
+                        <Checkout/>
                     </Collapse>
                 </List>
             </Container>
